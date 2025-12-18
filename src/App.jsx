@@ -1,35 +1,62 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import GeneralInfo from './components/GeneralInfo'
+import Education from './components/Education'
+import Experience from './components/Experience'
 import './App.css'
+import './styles/Components.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cvData, setCvData] = useState({
+    general: { name: "", email: "", phone: "" },
+    education: [],
+    experience: []
+  });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleGeneralUpdate = (newGeneral) => {
+    // TODO: Your implementation
+  };
+
+  const handleEducationUpdate = (newEducation) => {
+    // TODO: Your implementation
+  };
+
+  const handleExperienceUpdate = (newExperience) => {
+    // TODO: Your implementation
+  };
+
+  const handleGlobalSubmit = () => {
+    // TODO: Your implementation
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <h1>CV Application</h1>
+      
+      <GeneralInfo 
+        data={cvData.general}
+        onUpdate={handleGeneralUpdate}
+        isSubmitted={isSubmitted}
+      />
+
+      <Education 
+        data={cvData.education}
+        onUpdate={handleEducationUpdate}
+        isSubmitted={isSubmitted}
+      />
+
+      <Experience 
+        data={cvData.experience}
+        onUpdate={handleExperienceUpdate}
+        isSubmitted={isSubmitted}
+      />
+
+      <button className="submit-btn" onClick={handleGlobalSubmit}>
+        Submit CV
+      </button>
+    </div>
+  );
 }
 
-export default App
+export default App;
