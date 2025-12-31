@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import '../styles/Components.css';
 
+// contains 2 modes: display and edit 
 function GeneralInfo({ data, onUpdate, isSubmitted }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [isEditing, setIsEditing] = useState(false); // edit mode flag
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' }); // form data state
 
   function handleEdit() {
     setIsEditing(true);

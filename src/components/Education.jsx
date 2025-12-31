@@ -7,6 +7,10 @@ function Education({ data, onUpdate, isSubmitted }) {
  
   function handleEdit() {
     isEditing(true);
+    setFormData({ school: data.school, 
+                  degree: data.degree,
+                  year: data.year
+                });
   }
 
   function handleAdd() {
@@ -55,28 +59,29 @@ function Education({ data, onUpdate, isSubmitted }) {
           value = {formData.year}
           onChange = {(e) => handleInputChange('year', e.target.value)}
           />
-
-        <button className = "add-btn" onClick={handleAdd}>Add Education</button>
-
+          
         <button className = "save-btn" onClick={() => setIsEditing(false)}>Done</button>
-        
-        
-
-          {/* TODO: Display existing entries with delete buttons */}
-          {/* Loop through data array using .map() */}
-          {/* For each entry, show: */}
-          {/*   - entry.school, entry.degree, entry.year */}
-          {/*   - Delete button that calls handleDelete(entry.id) */}
-          {/* IMPORTANT: Use () => handleDelete(entry.id) NOT handleDelete(entry.id) */}
-          {/* Hint: data.map(entry => ( <div key={entry.id}>...</div> )) */}
+        <button className = "add-btn" onClick={handleAdd}>Add</button>
         </div>
       ) : (
         <div className="display-content">
-          {/* TODO: Check if data array is empty */}
-          {/* If data.length === 0: show "No education added yet" */}
-          {/* Else: loop through data and display each entry */}
-          
-          {/* TODO: Edit button (same as GeneralInfo) */}
+          if (data.length === 0) {
+            <>
+            <p>No education added yet</p>
+            <button className = "add-btn" onClick={handleEdit}>Add Education</button>
+            </>
+
+          } else {
+            data.map(entry => (
+              <div key={entry.id}>
+                <p>School: {entry.school}</p>
+                <p>Degree: {entry.degree}</p>
+                <p>Year: {entry.year}</p>
+                <button className="delete-btn" onClick={() => handleDelete(entry.id)}>Delete</button>
+                <button className="edit-btn" onClick={handleEdit}>Edit</button>
+              </div>
+            ))
+          }
         </div>
       )}
     </div>
