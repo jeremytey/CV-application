@@ -51,7 +51,7 @@ function GeneralInfo({ data, onUpdate, isSubmitted }) {
           <button className = "save-btn" onClick={handleSave}>Save</button>
         </div>
       ) : (
-    
+        // display mode
         <div className="display-content">
           <p>Name: {data.name || 'not provided'}</p>
           <p>Email: {data.email || 'not provided'}</p>

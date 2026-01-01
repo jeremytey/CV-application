@@ -6,7 +6,7 @@ function Education({ data, onUpdate, isSubmitted }) {
   const [formData, setFormData] = useState({ school: '', degree: '', year: '' });
  
   function handleEdit() {
-    isEditing(true);
+    setIsEditing(true);
     setFormData({ school: data.school, 
                   degree: data.degree,
                   year: data.year
@@ -21,9 +21,9 @@ function Education({ data, onUpdate, isSubmitted }) {
       year: formData.year
     };
 
-    const updatedData = { ...formData, [field]: value };
+    const updatedData = { ...formData, newEntry };
     onUpdate(updatedData);
-    setFormData({ school: '', degree: '', year: '' });
+    
   }
 
   function handleDelete(id) {
@@ -65,23 +65,23 @@ function Education({ data, onUpdate, isSubmitted }) {
         </div>
       ) : (
         <div className="display-content">
-          if (data.length === 0) {
-            <>
-            <p>No education added yet</p>
-            <button className = "add-btn" onClick={handleEdit}>Add Education</button>
-            </>
-
-          } else {
-            data.map(entry => (
-              <div key={entry.id}>
-                <p>School: {entry.school}</p>
-                <p>Degree: {entry.degree}</p>
-                <p>Year: {entry.year}</p>
-                <button className="delete-btn" onClick={() => handleDelete(entry.id)}>Delete</button>
-                <button className="edit-btn" onClick={handleEdit}>Edit</button>
+          {data && data.length === 0 ? (
+            <p>No education entries added.</p>
+          ) : (
+            data.map((entry) => (
+              <div key={entry.id} className="education-entry">
+                <p>School: {entry.school || 'not provided'}</p>
+                <p>Degree: {entry.degree || 'not provided'}</p>
+                <p>Year: {entry.year || 'not provided'}</p>
+                {!isSubmitted && (
+                  <button className="delete-btn" onClick={() => handleDelete(entry.id)}>Delete</button>
+                )}
               </div>
             ))
-          }
+          )}
+          
+            <button className="edit-btn" onClick={handleEdit}>Edit</button>
+          
         </div>
       )}
     </div>
