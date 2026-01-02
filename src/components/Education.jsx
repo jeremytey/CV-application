@@ -7,10 +7,7 @@ function Education({ data, onUpdate, isSubmitted }) {
  
   function handleEdit() {
     setIsEditing(true);
-    setFormData({ school: data.school, 
-                  degree: data.degree,
-                  year: data.year
-                });
+
   }
 
   function handleAdd() {
@@ -21,9 +18,9 @@ function Education({ data, onUpdate, isSubmitted }) {
       year: formData.year
     };
 
-    const updatedData = { ...formData, newEntry };
+    const updatedData = [...data, newEntry];  
     onUpdate(updatedData);
-    
+    setFormData({ school: '', degree: '', year: '' }); // Reset form
   }
 
   function handleDelete(id) {
@@ -59,9 +56,10 @@ function Education({ data, onUpdate, isSubmitted }) {
           value = {formData.year}
           onChange = {(e) => handleInputChange('year', e.target.value)}
           />
-          
+
+        <button className = "add-btn" onClick={handleAdd}>Add</button>  
         <button className = "save-btn" onClick={() => setIsEditing(false)}>Done</button>
-        <button className = "add-btn" onClick={handleAdd}>Add</button>
+        
         </div>
       ) : (
         <div className="display-content">

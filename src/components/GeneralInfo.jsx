@@ -8,9 +8,9 @@ function GeneralInfo({ data, onUpdate, isSubmitted }) {
 
   function handleEdit() {
     setIsEditing(true);
-    setFormData({ name: data.name, 
-                  email: data.email, 
-                  phone: data.phone 
+    setFormData({ name: data.name||'', 
+                  email: data.email||'', 
+                  phone: data.phone||'' 
                 });
   }
 
