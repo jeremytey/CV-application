@@ -15,19 +15,22 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleGeneralUpdate = (newGeneral) => {
-    // TODO: Your implementation
+    setCvData({ ...cvData, general: newGeneral });
+
   };
 
   const handleEducationUpdate = (newEducation) => {
-    // TODO: Your implementation
+    setCvData({ ...cvData, education: newEducation });
+
   };
 
   const handleExperienceUpdate = (newExperience) => {
-    // TODO: Your implementation
+    setCvData({ ...cvData, experience: newExperience });
   };
 
   const handleGlobalSubmit = () => {
-    // TODO: Your implementation
+    setIsSubmitted(true);
+    
   };
 
   return (

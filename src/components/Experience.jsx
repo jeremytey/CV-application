@@ -66,11 +66,14 @@ function Experience({ data, onUpdate, isSubmitted }) {
           />
         <button className = "add-btn" onClick={handleAdd}>Add</button>
         <button className = "save-btn" onClick={() => setIsEditing(false)}>Done</button>
+
         </div>
       ) : (
-        <div>
-          {data.length === 0 && <p>No experience added.</p>}
-          {data.map((entry) => (  
+        <div className = "display-content">
+          {data.length === 0 ? (
+            <p>No experience added.</p>
+          ) : (
+          data.map((entry) => (  
             <div key={entry.id} className="entry">
               <p>Company: {entry.company || 'not provided'}</p>
               <p>Position: {entry.position || 'not provided'}</p>
@@ -78,8 +81,10 @@ function Experience({ data, onUpdate, isSubmitted }) {
               {!isSubmitted && (
                 <button className="delete-btn" onClick={() => handleDelete(entry.id)}>Delete</button>
               )}
+
             </div>
-          ))}
+          ))
+          )}
           <button className="edit-btn" onClick={handleEdit}>Edit</button>
         </div>
       )}
